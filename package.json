@@ -1,0 +1,43 @@
+{
+  "name": "@reference-ui/workspace",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Reference UI - Knowledge-first UI.",
+  "scripts": {
+    "dev": "nx run-many --target=dev --projects=reference-core,reference-storybook --parallel=2",
+    "dev:all": "nx run-many --target=dev --all --parallel=4",
+    "dev:core": "nx dev reference-core",
+    "dev:system": "nx dev reference-system",
+    "dev:storybook": "nx dev reference-storybook",
+    "build": "nx run-many --target=build --all",
+    "build:system": "nx build reference-system",
+    "build:core": "nx build reference-core",
+    "build:react": "nx build reference-react",
+    "test": "nx run-many --target=test --all"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "@nx/js": "22.4.2",
+    "@nx/storybook": "^22.4.2",
+    "@nx/vite": "22.4.2",
+    "@nx/web": "22.4.2",
+    "@storybook/react": "^8.6.15",
+    "@storybook/react-vite": "^8.6.15",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/node": "20.19.9",
+    "nx": "22.4.2",
+    "prettier": "~3.6.2",
+    "storybook": "^8.6.15",
+    "ts-node": "10.9.1",
+    "tslib": "^2.3.0",
+    "typescript": "~5.9.2",
+    "vite": "^6.0.0"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {}
+}

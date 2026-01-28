@@ -1,0 +1,48 @@
+{
+  "name": "@reference-ui/react",
+  "version": "0.0.1",
+  "description": "Reference UI - React component bindings",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "pnpm run build && chokidar \"src/**/*.ts\" -c \"pnpm run build\"",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@lit/react": "^1.0.0",
+    "@reference-ui/core": "workspace:*",
+    "tslib": "^2.7.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "chokidar-cli": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsdown": "^0.20.1",
+    "typescript": "^5.3.0"
+  },
+  "license": "MIT"
+}

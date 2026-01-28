@@ -1,0 +1,34 @@
+{
+  "name": "reference-system",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/reference-system/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "codegen": {
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/styled-system"],
+      "options": {
+        "command": "panda codegen",
+        "cwd": "packages/reference-system"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["codegen"],
+      "outputs": ["{projectRoot}/styled-system", "{projectRoot}/dist"],
+      "options": {
+        "command": "pnpm run build",
+        "cwd": "packages/reference-system"
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["codegen"],
+      "options": {
+        "command": "pnpm run dev",
+        "cwd": "packages/reference-system"
+      }
+    }
+  }
+}
