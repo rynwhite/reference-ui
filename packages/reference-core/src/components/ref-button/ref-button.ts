@@ -75,13 +75,9 @@ export class RefButton extends LitElement implements RefButtonProps {
       cursor: 'pointer',
       border: 'none',
       fontFamily: 'system-ui',
+      padding: '3px'
     };
 
-    const sizeStyles = {
-      small: { paddingLeft: 3, paddingRight: 3, paddingTop: 1.5, paddingBottom: 1.5, fontSize: 'sm' },
-      medium: { paddingLeft: 4, paddingRight: 4, paddingTop: 2, paddingBottom: 2, fontSize: 'md' },
-      large: { paddingLeft: 6, paddingRight: 6, paddingTop: 3, paddingBottom: 3, fontSize: 'lg' },
-    };
 
     const variantStyles = {
       primary: {
@@ -103,11 +99,10 @@ export class RefButton extends LitElement implements RefButtonProps {
     };
 
     const variant = this.variant ?? 'primary';
-    const size = this.size ?? 'medium';
+  
     return css({
-      ...baseStyles,
-      ...sizeStyles[size],
-      ...variantStyles[variant],
+      padding: '33px',
+      backgroundColor: 'primary.500',
       _disabled: {
         opacity: 0.5,
         cursor: 'not-allowed',

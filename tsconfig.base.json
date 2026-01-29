@@ -20,7 +20,8 @@
       "@reference-ui/reference-storybook": [
         "packages/reference-storybook/src/index.ts"
       ],
-      "@reference-ui/system": ["packages/reference-system/src/index.ts"]
+      "@reference-ui/system": ["packages/reference-system/src/index.ts"],
+      "@reference-ui/reference-cli": ["packages/reference-cli/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

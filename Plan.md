@@ -20,3 +20,18 @@ MAGIC. MAGIc.
 
 
 
+
+
+//tries to get usage data for components.
+// lists functions which use it.
+awesome bit of kit
+<Reference.Usage>
+
+</Reference.Usage>
+
+
+
+//shows your DS colours.
+<Reference.Colors>
+</Reference.Colors
+
