@@ -22,9 +22,9 @@ const config: StorybookConfig = {
       resolve: {
         alias: {
           '@reference-ui/core/styles.css': resolve(packagesDir, 'reference-system/panda.css'),
-          // Point to dist files for HMR (changes trigger reloads)
-          '@reference-ui/core/react': resolve(packagesDir, 'reference-core/dist/react.js'),
-          '@reference-ui/core': resolve(packagesDir, 'reference-core/dist/index.js'),
+          // Point to dist files for HMR (tsdown outputs .mjs/.cjs)
+          '@reference-ui/core/react': resolve(packagesDir, 'reference-core/dist/react.mjs'),
+          '@reference-ui/core': resolve(packagesDir, 'reference-core/dist/index.mjs'),
         },
         dedupe: ['@reference-ui/core'],
       },
