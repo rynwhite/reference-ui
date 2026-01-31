@@ -10,5 +10,4 @@ export type {
   RefButtonProps,
 } from './components/Button.js';
 export { tokens } from './tokens.js';
-export { createPandaConfig } from './panda-config.js';
-export type { CreatePandaConfigOptions } from './panda-config.js';
+export { defaultTheme, defaultStaticCss } from './panda-config.js';

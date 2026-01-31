@@ -27,8 +27,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Reference UI generated (consumer .reference/)
+# Reference UI generated
 .reference
+packages/reference-core/styled-system
 
 # Nx
 .nx
