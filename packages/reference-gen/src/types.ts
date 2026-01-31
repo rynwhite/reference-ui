@@ -16,4 +16,9 @@ export interface GenerateDesignSystemConfig {
   tokens?: unknown
   /** Components to include (default: all from core) */
   components?: string[]
+  /**
+   * Core source file contents (path -> content). CLI reads from reference-core and passes here.
+   * Keys: logical paths e.g. "components/Button.ts", "tokens.ts", "panda-config.ts", "css.ts"
+   */
+  sourceFiles?: Record<string, string>
 }

@@ -20,6 +20,9 @@ importers:
 
   packages/reference-app:
     dependencies:
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.2
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -27,6 +30,9 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@pandacss/dev':
+        specifier: ^0.49.0
+        version: 0.49.0(typescript@5.9.3)
       '@reference-ui/cli':
         specifier: workspace:*
         version: link:../reference-cli
@@ -48,13 +54,16 @@ importers:
 
   packages/reference-cli:
     dependencies:
+      '@reference-ui/core':
+        specifier: workspace:*
+        version: link:../reference-core
       '@reference-ui/gen':
         specifier: workspace:*
         version: link:../reference-gen
-    devDependencies:
       tsdown:
         specifier: ^0.20.1
         version: 0.20.1(typescript@5.9.3)
+    devDependencies:
       typescript:
         specifier: ~5.9.2
         version: 5.9.3

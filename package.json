@@ -5,7 +5,7 @@
   "description": "Reference UI - Knowledge-First Components",
   "scripts": {
     "build": "nx run-many --target=build --all",
-    "dev": "nx run-many --target=dev --all --parallel"
+    "dev": "nx run-many --target=dev --projects=reference-gen,reference-cli,reference-app --parallel=3"
   },
   "devDependencies": {
     "nx": "22.4.2",

@@ -1,13 +1,12 @@
 /**
  * Load reference-core as source.
  * Core is consumed without pre-bundling - semantics stay transparent.
+ * This is a validation check - actual source files are passed via config.sourceFiles.
  */
-import { tokens } from '@reference-ui/core'
-import { createPandaConfig } from './panda-config.js'
-
 export function loadCore() {
+  // Validation stub - core source is passed explicitly via sourceFiles config
   return {
-    tokens,
-    createPandaConfig,
+    tokens: {},
+    createPandaConfig: () => ({}),
   }
 }

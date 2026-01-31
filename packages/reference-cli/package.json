@@ -30,10 +30,11 @@
     "dev": "tsdown --watch"
   },
   "dependencies": {
-    "@reference-ui/gen": "workspace:*"
+    "@reference-ui/core": "workspace:*",
+    "@reference-ui/gen": "workspace:*",
+    "tsdown": "^0.20.1"
   },
   "devDependencies": {
-    "tsdown": "^0.20.1",
     "typescript": "~5.9.2"
   }
 }
