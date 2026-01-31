@@ -3,6 +3,7 @@ node_modules
 research/
 # Build outputs
 dist
+tmp
 .stencil
 loader
 www

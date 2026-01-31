@@ -21,6 +21,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@reference-ui/cli": "workspace:*",
     "@nx/js": "22.4.2",
     "@nx/storybook": "^22.4.2",
     "@nx/vite": "22.4.2",
