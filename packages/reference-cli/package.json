@@ -33,8 +33,11 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@lit/react": "^1.0.0",
     "@pandacss/dev": "^0.45.0",
+    "@reference-ui/core": "workspace:*",
     "@reference-ui/system": "workspace:*",
+    "lit": "^3.2.0",
     "tslib": "^2.7.0"
   },
   "devDependencies": {

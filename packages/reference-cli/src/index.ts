@@ -11,6 +11,6 @@ if (args[0] === 'sync') {
   if (!ok) {
     process.exit(1)
   }
-  console.log(`Synced .reference/ in ${packageRoot}`)
+  console.log(`Synced .reference/ and node_modules/@reference/core in ${packageRoot}`)
   process.exit(0)
 }

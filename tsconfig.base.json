@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@reference/core": ["packages/reference-core/dist/index.d.mts"],
+      "@reference/core/react": ["packages/reference-core/dist/react.d.mts"],
+      "@reference/core/*": ["packages/reference-core/dist/*"],
       "@reference-ui/core": ["packages/reference-core/src/index.ts"],
       "@reference-ui/core/react": ["packages/reference-core/src/react.ts"],
       "@reference-ui/reference-storybook": [

@@ -77,12 +77,6 @@ importers:
 
   packages/reference-app:
     dependencies:
-      '@reference-ui/core':
-        specifier: workspace:*
-        version: link:../reference-core
-      '@reference-ui/system':
-        specifier: workspace:*
-        version: link:../reference-system
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -111,12 +105,21 @@ importers:
 
   packages/reference-cli:
     dependencies:
+      '@lit/react':
+        specifier: ^1.0.0
+        version: 1.0.8(@types/react@18.3.27)
       '@pandacss/dev':
         specifier: ^0.45.0
         version: 0.45.2(typescript@5.9.3)
+      '@reference-ui/core':
+        specifier: workspace:*
+        version: link:../reference-core
       '@reference-ui/system':
         specifier: workspace:*
         version: link:../reference-system
+      lit:
+        specifier: ^3.2.0
+        version: 3.3.2
       tslib:
         specifier: ^2.7.0
         version: 2.8.1

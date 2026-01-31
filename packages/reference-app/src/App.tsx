@@ -1,4 +1,5 @@
-import '@reference-ui/core';
+import React from 'react';
+import { RefButton } from '@reference/core/react';
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
       <p>Testing CLI-generated styles and core components</p>
 
       <div style={{ marginTop: '2rem' }}>
-        <ref-button>Click Me</ref-button>
+        <RefButton>Click Me</RefButton>
       </div>
     </div>
   );
