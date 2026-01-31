@@ -1,15 +1,11 @@
 /**
  * @reference-ui/system
- * 
- * Panda CSS wrapper for Reference UI
- * Provides design tokens, recipes, and the Panda CSS API
+ *
+ * Panda CSS template for Reference UI: config factory + tokens.
+ * The CLI uses this to prepare config; codegen runs in the consumer package
+ * and writes to the consumer's .reference/ (no styled-system or panda.css here).
  */
 
-// Re-export Panda CSS core utilities
-export { css, cx, cva } from '../styled-system/css'
-export * from '../styled-system/recipes'
-export * from '../styled-system/patterns'
-
-// Export token system
+export { createPandaConfig } from './create-panda-config'
+export type { CreatePandaConfigOptions } from './create-panda-config'
 export { tokens } from './reference.tokens'
-

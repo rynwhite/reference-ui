@@ -1,7 +1,7 @@
 {
   "name": "@reference-ui/system",
   "version": "0.0.1",
-  "description": "Reference UI - Panda CSS design system wrapper",
+  "description": "Reference UI - Panda CSS design system template (config + theme)",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -12,35 +12,20 @@
       "import": "./dist/index.js"
     },
     "./css": {
-      "types": "./styled-system/css/index.d.ts",
-      "import": "./styled-system/css/index.mjs"
-    },
-    "./recipes": {
-      "types": "./styled-system/recipes/index.d.ts",
-      "import": "./styled-system/recipes/index.mjs"
-    },
-    "./patterns": {
-      "types": "./styled-system/patterns/index.d.ts",
-      "import": "./styled-system/patterns/index.mjs"
-    },
-    "./tokens": {
-      "types": "./styled-system/tokens/index.d.ts",
-      "import": "./styled-system/tokens/index.mjs"
-    },
-    "./panda.css": "./panda.css"
+      "types": "./dist/css.d.ts",
+      "import": "./dist/css.js"
+    }
   },
   "files": [
-    "dist",
-    "styled-system",
-    "panda.css"
+    "dist"
   ],
   "scripts": {
-    "build": "panda codegen && panda cssgen --outfile=panda.css && tsc",
-    "dev": "panda --watch",
-    "codegen": "panda codegen"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.45.0"
+    "@pandacss/dev": "^0.45.0",
+    "typescript": "^5.3.0"
   },
   "license": "MIT"
 }

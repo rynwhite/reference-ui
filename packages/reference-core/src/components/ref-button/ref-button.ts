@@ -101,7 +101,7 @@ export class RefButton extends LitElement implements RefButtonProps {
     const variant = this.variant ?? 'primary';
   
     return css({
-      padding: '33px',
+      padding: '16px',
       backgroundColor: 'primary.500',
       _disabled: {
         opacity: 0.5,

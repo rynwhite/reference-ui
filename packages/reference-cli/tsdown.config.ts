@@ -15,8 +15,7 @@ export default defineConfig({
   target: 'node18',
   // Specify tsconfig for build
   tsconfig: './tsconfig.lib.json',
-  // Bundle all dependencies for the CLI
+  // Bundle all dependencies except Panda (we resolve and run it at runtime)
   noExternal: [/.*/],
-  // Keep Node.js built-ins external
-  external: [/^node:/, 'fsevents']
+  external: [/^node:/, 'fsevents', '@pandacss/dev', /^@pandacss\/dev\/.+/]
 });

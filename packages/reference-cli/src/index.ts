@@ -1,9 +1,16 @@
-export * from './lib/reference-cli';
+import { resolve } from 'node:path'
+import { runSync } from './lib/sync.js'
 
-// CLI entry point
-import { referenceCli } from './lib/reference-cli';
+export * from './lib/reference-cli'
+export { runSync } from './lib/sync.js'
 
-// If running as CLI (not imported as module)
-if (import.meta.url === `file://${process.argv[1]}`) {
-  console.log(referenceCli());
+const args = process.argv.slice(2)
+if (args[0] === 'sync') {
+  const cwd = args[1] ? resolve(process.cwd(), args[1]) : undefined
+  const { ok, packageRoot } = runSync(cwd)
+  if (!ok) {
+    process.exit(1)
+  }
+  console.log(`Synced .reference/ in ${packageRoot}`)
+  process.exit(0)
 }

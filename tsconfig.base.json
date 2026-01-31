@@ -21,6 +21,7 @@
         "packages/reference-storybook/src/index.ts"
       ],
       "@reference-ui/system": ["packages/reference-system/src/index.ts"],
+      "@reference-ui/system/*": ["packages/reference-system/src/*"],
       "@reference-ui/reference-cli": ["packages/reference-cli/src/index.ts"]
     }
   },

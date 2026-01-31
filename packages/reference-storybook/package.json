@@ -3,10 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "description": "Reference UI - Component Documentation",
+  "reference": {
+    "include": [
+      "src/**/*.{ts,tsx}",
+      "../reference-core/src/**/*.{ts,tsx}"
+    ]
+  },
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "dev": "reference sync && storybook dev -p 6006",
+    "storybook": "reference sync && storybook dev -p 6006",
+    "build-storybook": "reference sync && storybook build"
   },
   "dependencies": {
     "@reference-ui/core": "workspace:*",
@@ -14,6 +20,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@reference-ui/cli": "workspace:*",
     "@storybook/addon-essentials": "^8.6.15",
     "@storybook/addon-interactions": "^8.6.15",
     "@storybook/addon-links": "^8.6.15",

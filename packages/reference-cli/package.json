@@ -29,9 +29,12 @@
     "dev": "pnpm run build && node dist/index.mjs",
     "watch": "tsdown --watch",
     "test": "vitest run",
+    "ci": "node scripts/ci.mjs",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@pandacss/dev": "^0.45.0",
+    "@reference-ui/system": "workspace:*",
     "tslib": "^2.7.0"
   },
   "devDependencies": {
