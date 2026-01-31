@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2020", "dom"],
@@ -15,17 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@reference/core": ["packages/reference-core/dist/index.d.mts"],
-      "@reference/core/react": ["packages/reference-core/dist/react.d.mts"],
-      "@reference/core/*": ["packages/reference-core/dist/*"],
       "@reference-ui/core": ["packages/reference-core/src/index.ts"],
-      "@reference-ui/core/react": ["packages/reference-core/src/react.ts"],
-      "@reference-ui/reference-storybook": [
-        "packages/reference-storybook/src/index.ts"
-      ],
-      "@reference-ui/system": ["packages/reference-system/src/index.ts"],
-      "@reference-ui/system/*": ["packages/reference-system/src/*"],
-      "@reference-ui/reference-cli": ["packages/reference-cli/src/index.ts"]
+      "@reference-ui/gen": ["packages/reference-gen/src/index.ts"],
+      "@reference-ui/cli": ["packages/reference-cli/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
