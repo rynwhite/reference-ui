@@ -1,12 +1,9 @@
 {
-  "name": "@reference-ui/cli",
+  "name": "@reference-ui/gen",
   "version": "0.0.1",
   "private": true,
-  "description": "Reference CLI - invokes compiler, materializes output to disk",
+  "description": "Reference design system compiler - consumes core, produces BuildResult in memory",
   "type": "module",
-  "bin": {
-    "reference": "./src/index.ts"
-  },
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
@@ -17,9 +14,10 @@
     "dev": "echo no dev"
   },
   "dependencies": {
-    "@reference-ui/gen": "workspace:*"
+    "@reference-ui/core": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "chokidar": "^4.0.0"
   }
 }

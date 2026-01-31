@@ -1,7 +1,7 @@
 {
-  "name": "reference-system",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/reference-system/src",
+  "name": "old-reference-system",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/old/reference-system/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -10,14 +10,14 @@
       "outputs": ["{projectRoot}/dist"],
       "options": {
         "command": "pnpm run build",
-        "cwd": "packages/reference-system"
+        "cwd": "packages/old/reference-system"
       }
     },
     "dev": {
       "executor": "nx:run-commands",
       "options": {
         "command": "pnpm run dev",
-        "cwd": "packages/reference-system"
+        "cwd": "packages/old/reference-system"
       }
     }
   }

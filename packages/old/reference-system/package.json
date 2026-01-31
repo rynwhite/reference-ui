@@ -1,5 +1,5 @@
 {
-  "name": "@reference-ui/system",
+  "name": "@reference-ui/old-reference-system",
   "version": "0.0.1",
   "description": "Reference UI - Panda CSS design system template (config + theme)",
   "type": "module",

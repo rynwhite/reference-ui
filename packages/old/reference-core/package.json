@@ -1,0 +1,64 @@
+{
+  "name": "@reference-ui/old-reference-core",
+  "version": "0.0.1",
+  "description": "Reference UI - Core web components",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "sideEffects": ["./dist/styles.css"],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./react": {
+      "import": {
+        "types": "./dist/react.d.mts",
+        "default": "./dist/react.mjs"
+      },
+      "require": {
+        "types": "./dist/react.d.cts",
+        "default": "./dist/react.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsdown && node scripts/copy-styles.cjs",
+    "dev": "tsdown --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@lit/react": "^1.0.0",
+    "@reference-ui/old-reference-system": "workspace:*",
+    "lit": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsdown": "^0.20.1",
+    "typescript": "^5.3.0",
+    "vitest": "^2.1.8"
+  },
+  "license": "MIT"
+}

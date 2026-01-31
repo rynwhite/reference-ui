@@ -1,5 +1,5 @@
 {
-  "name": "@reference-ui/app",
+  "name": "@reference-ui/old-reference-app",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -19,7 +19,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@reference-ui/cli": "workspace:*",
+    "@reference-ui/old-reference-cli": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",

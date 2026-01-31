@@ -1,7 +1,7 @@
 {
-  "name": "reference-react",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/reference-react/src",
+  "name": "old-reference-react",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/old/reference-react/src",
   "projectType": "library",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "dependsOn": ["^build"],
       "options": {
         "command": "pnpm run build",
-        "cwd": "packages/reference-react"
+        "cwd": "packages/old/reference-react"
       }
     },
     "dev": {
@@ -17,7 +17,7 @@
       "dependsOn": ["^build"],
       "options": {
         "command": "pnpm run dev",
-        "cwd": "packages/reference-react"
+        "cwd": "packages/old/reference-react"
       }
     }
   }

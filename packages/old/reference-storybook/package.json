@@ -1,5 +1,5 @@
 {
-  "name": "@reference-ui/storybook",
+  "name": "@reference-ui/old-reference-storybook",
   "version": "0.0.1",
   "private": true,
   "description": "Reference UI - Component Documentation",
@@ -15,12 +15,12 @@
     "build-storybook": "reference sync && storybook build"
   },
   "dependencies": {
-    "@reference-ui/core": "workspace:*",
+    "@reference-ui/old-reference-core": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@reference-ui/cli": "workspace:*",
+    "@reference-ui/old-reference-cli": "workspace:*",
     "@storybook/addon-essentials": "^8.6.15",
     "@storybook/addon-interactions": "^8.6.15",
     "@storybook/addon-links": "^8.6.15",

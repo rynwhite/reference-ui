@@ -25,26 +25,5 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)"
     ]
   },
-  "defaultBase": "main",
-  "plugins": [
-    {
-      "plugin": "@nx/storybook/plugin",
-      "options": {
-        "serveStorybookTargetName": "storybook",
-        "buildStorybookTargetName": "build-storybook",
-        "testStorybookTargetName": "test-storybook",
-        "staticStorybookTargetName": "static-storybook",
-        "buildDepsTargetName": "build-deps",
-        "watchDepsTargetName": "watch-deps"
-      }
-    },
-    {
-      "plugin": "@nx/vitest",
-      "options": {
-        "testTargetName": "test",
-        "ciTargetName": "test-ci",
-        "testMode": "watch"
-      }
-    }
-  ]
+  "defaultBase": "main"
 }

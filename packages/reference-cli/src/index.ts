@@ -1,16 +1,30 @@
-import { resolve } from 'node:path'
-import { runSync } from './lib/sync.js'
+#!/usr/bin/env node
+/**
+ * Reference CLI - execution and materialization layer.
+ * Imports reference-gen, calls generateDesignSystem(), writes output to disk.
+ */
 
-export * from './lib/reference-cli'
-export { runSync } from './lib/sync.js'
+import { syncCommand } from './commands/sync.js'
 
 const args = process.argv.slice(2)
-if (args[0] === 'sync') {
-  const cwd = args[1] ? resolve(process.cwd(), args[1]) : undefined
-  const { ok, packageRoot } = runSync(cwd)
-  if (!ok) {
-    process.exit(1)
+const command = args[0] ?? 'sync'
+const cwd = process.cwd()
+
+async function main(): Promise<void> {
+  switch (command) {
+    case 'sync':
+      await syncCommand(cwd)
+      break
+    case 'build':
+      await syncCommand(cwd)
+      break
+    default:
+      console.log('Usage: reference <sync|build|dev>')
+      process.exit(1)
   }
-  console.log(`Synced .reference/ and node_modules/@reference/core in ${packageRoot}`)
-  process.exit(0)
 }
+
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

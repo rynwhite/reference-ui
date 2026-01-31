@@ -1,13 +1,96 @@
-# @reference-ui/core
+# Reference Core
 
-Core web components built with Lit (Light DOM).
+This is the core template for a design system.
 
-## Setup
+## Features
+- Panda CSS styled system
+- Panda CSS token configuration
+- Lit Web component
+- outputs to multiple targets
 
-Import the design system styles once in your app (e.g. root layout or entry):
 
-```ts
-import '@reference-ui/core/styles.css';
-```
+## Compiler integration
 
-Then use the components. No other configuration required.
+- The compiler will effectively house this core within itself and have functions which allow  users to
+extend our reference-core.
+for demo purposes, we only wish to extend tokens for now.
+
+
+
+The Reference System is the core template and semantic foundation of the design system.
+
+It defines the structure, behaviour, and styling model of Reference components.
+
+Responsibilities
+
+Defines the complete Panda CSS styled system
+
+Declares token schema and defaults
+
+Implements core components (Lit-based)
+
+Establishes layout, spacing, and styling semantics
+
+Exposes a closed, parameterisable program to the compiler
+
+Inputs
+
+Design tokens
+
+Compile-time configuration values
+
+Outputs
+
+None directly — all outputs are produced via the compiler
+
+Key invariants
+
+No knowledge of consumers
+
+No filesystem logic
+
+No runtime configuration
+
+No conditional behaviour based on environment
+
+What it is not
+
+❌ A library users import
+
+❌ A configurable framework
+
+❌ A runtime package
+
+❌ A CLI tool
+
+Mental model
+
+The Reference System defines what a design system is.
+It does not care who uses it or how.
+
+How the pieces fit together
+reference-system
+     ↓
+reference-compiler
+     ↓
+@reference-ui/cli
+     ↓
+node_modules/@reference/*   (generated output)
+
+
+System defines meaning
+
+Compiler produces artifacts
+
+CLI controls execution and placement
+
+Generated output is disposable build product
+
+Guiding principle (shared across all modules)
+
+Semantics are compile-time.
+Values are inputs.
+Files are outputs.
+Everything is reproducible.
+
+That’s the contract.
