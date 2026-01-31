@@ -1,5 +1,5 @@
-import { writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { writeFileSync, mkdirSync } from 'node:fs'
+import { resolve, dirname } from 'node:path'
 import { resolvePackageRoot } from './resolve-consumer.js'
 import { loadReferenceConfig } from './load-config.js'
 import { runPanda } from './run-panda.js'
@@ -26,7 +26,7 @@ export default createPandaConfig({
 
 /**
  * Run sync: write panda.config.ts in the consumer package and run panda codegen + cssgen.
- * Output goes to the consumer's .reference/
+ * Output goes to the consumer's .reference/ for codegen, but CSS goes to styled-system/styles.css
  */
 export function runSync(startCwd?: string): { ok: boolean; packageRoot: string } {
   const packageRoot = resolvePackageRoot(startCwd ?? process.cwd())
@@ -39,7 +39,13 @@ export function runSync(startCwd?: string): { ok: boolean; packageRoot: string }
     return { ok: false, packageRoot }
   }
 
-  const outFile = `${OUT_DIR}/panda.css`
+  // Output CSS to styled-system/styles.css (standard Panda location)
+  const outFile = 'styled-system/styles.css'
+  const outPath = resolve(packageRoot, outFile)
+  
+  // Ensure directory exists before Panda writes to it
+  mkdirSync(dirname(outPath), { recursive: true })
+  
   if (!runPanda(packageRoot, ['cssgen', '--outfile', outFile])) {
     return { ok: false, packageRoot }
   }
