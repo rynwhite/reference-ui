@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -148,13 +148,17 @@ function findPackageDir(packageRoot: string, pkgName: string): string | null {
 }
 
 /**
- * Copy .reference/runtime/core to node_modules/@reference/core (atomic: remove then copy).
- * Then create node_modules/@reference/core/node_modules and populate it with the dependencies
- * that the bundle needs (@reference-ui/system, lit, @lit/react), copying or symlinking them.
+ * Copy .reference/runtime/core to node_modules/@reference/core atomically.
+ * Creates node_modules/@reference/core/node_modules and copies all dependencies
+ * (@reference-ui/system, lit, @lit/react) from CLI's bundled deps.
+ * 
+ * Uses atomic temp-then-rename to avoid partial states.
+ * Pure copy-only approach: no symlinks, works everywhere.
  */
 export function copyRuntimeToNodeModules(packageRoot: string): void {
   const source = resolve(packageRoot, DOT_REFERENCE_RUNTIME_CORE)
   const target = resolve(packageRoot, NODE_MODULES_REFERENCE_CORE)
+  const tempTarget = resolve(packageRoot, `node_modules/@reference/.core-${Date.now()}`)
 
   if (!existsSync(source)) {
     throw new Error(
@@ -162,52 +166,47 @@ export function copyRuntimeToNodeModules(packageRoot: string): void {
     )
   }
 
+  // Atomic: copy to temp, build complete structure, then swap
   mkdirSync(resolve(packageRoot, 'node_modules/@reference'), { recursive: true })
-  rmSync(target, { recursive: true, force: true })
-  cpSync(source, target, { recursive: true })
+  cpSync(source, tempTarget, { recursive: true })
 
-  const coreNodeModules = resolve(target, 'node_modules')
-  mkdirSync(coreNodeModules, { recursive: true })
+  // Build node_modules structure inside temp
+  const tempCoreNodeModules = resolve(tempTarget, 'node_modules')
+  mkdirSync(tempCoreNodeModules, { recursive: true })
 
-  // @reference-ui/system — use the generated runtime, not the stub package
+  // @reference-ui/system — copy the generated runtime
   const systemRuntimePath = resolve(packageRoot, '.reference/runtime/system')
   if (existsSync(systemRuntimePath)) {
-    // 1) Inside @reference/core/node_modules for the component bundles
-    const refUiDir = resolve(coreNodeModules, '@reference-ui')
+    const refUiDir = resolve(tempCoreNodeModules, '@reference-ui')
     mkdirSync(refUiDir, { recursive: true })
-    const systemLink = resolve(refUiDir, 'system')
-    if (!existsSync(systemLink)) {
-      symlinkSync(systemRuntimePath, systemLink, 'dir')
-    }
-
-    // 2) At top-level node_modules/@reference-ui/system so Vite can resolve it
-    const topLevelRefUiDir = resolve(packageRoot, 'node_modules/@reference-ui')
-    mkdirSync(topLevelRefUiDir, { recursive: true })
-    const topLevelSystemLink = resolve(topLevelRefUiDir, 'system')
-    // Remove existing symlink or directory to ensure fresh link
-    if (existsSync(topLevelSystemLink)) {
-      rmSync(topLevelSystemLink, { recursive: true, force: true })
-    }
-    symlinkSync(systemRuntimePath, topLevelSystemLink, 'dir')
+    cpSync(systemRuntimePath, resolve(refUiDir, 'system'), { recursive: true })
   }
 
-  // lit
+  // lit — copy from CLI's bundled dependencies
   const litPath = findPackageDir(packageRoot, 'lit')
   if (litPath) {
-    const linkPath = resolve(coreNodeModules, 'lit')
-    if (!existsSync(linkPath)) {
-      symlinkSync(litPath, linkPath, 'dir')
-    }
+    cpSync(litPath, resolve(tempCoreNodeModules, 'lit'), { recursive: true })
   }
 
-  // @lit/react
+  // @lit/react — copy from CLI's bundled dependencies
   const litReactPath = findPackageDir(packageRoot, '@lit/react')
   if (litReactPath) {
-    const atLitDir = resolve(coreNodeModules, '@lit')
+    const atLitDir = resolve(tempCoreNodeModules, '@lit')
     mkdirSync(atLitDir, { recursive: true })
-    const reactLink = resolve(atLitDir, 'react')
-    if (!existsSync(reactLink)) {
-      symlinkSync(litReactPath, reactLink, 'dir')
-    }
+    cpSync(litReactPath, resolve(atLitDir, 'react'), { recursive: true })
+  }
+
+  // Atomic swap: remove old, rename temp to target
+  rmSync(target, { recursive: true, force: true })
+  renameSync(tempTarget, target)
+
+  // Top-level @reference-ui/system for Vite/webpack resolution
+  const topLevelRefUiDir = resolve(packageRoot, 'node_modules/@reference-ui')
+  mkdirSync(topLevelRefUiDir, { recursive: true })
+  const topLevelSystemTarget = resolve(topLevelRefUiDir, 'system')
+  rmSync(topLevelSystemTarget, { recursive: true, force: true })
+  
+  if (existsSync(systemRuntimePath)) {
+    cpSync(systemRuntimePath, topLevelSystemTarget, { recursive: true })
   }
 }
