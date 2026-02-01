@@ -8,15 +8,18 @@ function getSystemPackageJson(): string {
       version: '0.0.0-generated',
       description: 'Reference design system (generated)',
       type: 'module',
-      main: './index.cjs',
-      module: './index.mjs',
-      types: './index.d.mts',
+      main: './css/index.js',
+      types: './css/index.d.ts',
       exports: {
         '.': {
-          import: { types: './index.d.mts', default: './index.mjs' },
-          require: { types: './index.d.cts', default: './index.cjs' },
+          types: './css/index.d.ts',
+          default: './css/index.js',
         },
-        './styles.css': './styles.css',
+        './css': {
+          types: './css/index.d.ts',
+          default: './css/index.js',
+        },
+        './styles.css': './styles.css'
       },
     },
     null,
@@ -47,35 +50,13 @@ function getWebPackageJson(): string {
   )
 }
 
-function getReactPackageJson(): string {
-  return JSON.stringify(
-    {
-      name: '@reference-ui/react',
-      version: '0.0.0-generated',
-      description: 'Reference React bindings',
-      type: 'module',
-      main: './index.cjs',
-      module: './index.mjs',
-      types: './index.d.mts',
-      exports: {
-        '.': {
-          import: { types: './index.d.mts', default: './index.mjs' },
-          require: { types: './index.d.cts', default: './index.cjs' },
-        },
-        './styles.css': './styles.css',
-      },
-    },
-    null,
-    2
-  )
-}
-
 /**
- * Copy reference-core dist/ to node_modules/@reference-ui with proper namespaces.
- * Creates @reference-ui/system, @reference-ui/web, @reference-ui/react.
+ * Copy reference-core outputs to node_modules/@reference-ui with proper namespaces.
+ * Creates @reference-ui/system and @reference-ui/web.
  */
 export function copyToNodeModules(packageRoot: string, coreDir: string): void {
   const distDir = resolve(coreDir, 'dist/entry')
+  const systemSourceDir = resolve(coreDir, 'src/system')
   const stylesSourcePath = resolve(coreDir, 'src/system/styles.css')
 
   if (!existsSync(distDir)) {
@@ -87,9 +68,9 @@ export function copyToNodeModules(packageRoot: string, coreDir: string): void {
   // Ensure @reference-ui namespace exists
   mkdirSync(resolve(packageRoot, 'node_modules/@reference-ui'), { recursive: true })
 
-  // Copy dist contents to @reference-ui/system
+  // Copy system source to @reference-ui/system
   const systemTarget = resolve(packageRoot, 'node_modules/@reference-ui/system')
-  cpSync(distDir, systemTarget, { recursive: true })
+  cpSync(systemSourceDir, systemTarget, { recursive: true })
   writeFileSync(resolve(systemTarget, 'package.json'), getSystemPackageJson(), 'utf-8')
   
   // Copy styles.css if it exists
@@ -107,13 +88,5 @@ export function copyToNodeModules(packageRoot: string, coreDir: string): void {
     cpSync(stylesSourcePath, resolve(webTarget, 'styles.css'))
   }
 
-  // Create @reference-ui/react as alias
-  const reactTarget = resolve(packageRoot, 'node_modules/@reference-ui/react')
-  cpSync(distDir, reactTarget, { recursive: true })
-  writeFileSync(resolve(reactTarget, 'package.json'), getReactPackageJson(), 'utf-8')
   
-  // Copy styles.css to react package too
-  if (existsSync(stylesSourcePath)) {
-    cpSync(stylesSourcePath, resolve(reactTarget, 'styles.css'))
-  }
 }

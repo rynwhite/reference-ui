@@ -30,7 +30,7 @@
     "gen": "panda codegen && panda",
     "codegen": "panda codegen",
     "cssgen": "panda",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build && node ./dist/cli/index.mjs link-system"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { css } from '../system/css/index.js'
+import { css } from '@reference-ui/system/css'
 
 /**
  * Button variant types
