@@ -19,6 +19,7 @@ function resolveTsdownBin(): string {
     resolve(cliRoot, 'node_modules/.bin/tsdown'),
     resolve(cliRoot, '../node_modules/.bin/tsdown'), // monorepo workspace root
     resolve(cliRoot, '../../node_modules/.bin/tsdown'),
+    resolve(cliRoot, '../../node_modules/.bin/tsdown'),
   ]
   
   for (const bin of candidates) {
@@ -28,7 +29,7 @@ function resolveTsdownBin(): string {
   }
   
   throw new Error(
-    `@reference-ui/cli: tsdown not found. Searched: ${candidates.join(', ')}`
+    `@reference-ui/core: tsdown not found. Searched: ${candidates.join(', ')}`
   )
 }
 

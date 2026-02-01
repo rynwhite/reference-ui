@@ -1,5 +1,5 @@
 /**
- * Reference Gen - design system compiler.
+ * Reference Compiler - design system compiler.
  * Consumes reference-core as source, produces BuildResult in memory.
  * No filesystem access. CLI materializes output.
  */

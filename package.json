@@ -4,12 +4,13 @@
   "private": true,
   "description": "Reference UI - Knowledge-First Components",
   "scripts": {
-    "build": "nx run-many --target=build --all",
-    "dev": "nx run-many --target=dev --projects=reference-gen,reference-cli,reference-app --parallel=3"
+    "build": "pnpm -r run build",
+    "dev": "nx run-many --target=dev --projects=reference-core,reference-app --parallel"
   },
   "devDependencies": {
-    "nx": "22.4.2",
-    "prettier": "~3.6.2",
+    "@types/node": "^25.1.0",
+    "nx": "^22.4.4",
+    "prettier": "~3.8.1",
     "typescript": "~5.9.2"
   },
   "packageManager": "pnpm@10.28.2"

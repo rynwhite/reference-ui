@@ -1,6 +1,6 @@
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
-import type { BuildResult } from '@reference-ui/gen'
+import type { BuildResult } from '../compiler/index.js'
 
 const SYSTEM_DIR = '.reference/system'
 

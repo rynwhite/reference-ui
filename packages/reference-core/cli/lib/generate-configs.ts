@@ -1,5 +1,5 @@
-import { writeFileSync, mkdirSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { writeFileSync, mkdirSync } from 'fs'
+import { resolve } from 'path'
 
 const DOT_REFERENCE = '.reference'
 
@@ -27,8 +27,8 @@ const TSDOWN_CONFIG_TS = `export default {
  * Write .reference/tsconfig.json and .reference/tsdown.config.ts
  * so tsdown can bundle the system output.
  */
-export function generateDotReferenceConfigs(packageRoot: string): void {
-  const dotRefDir = resolve(packageRoot, DOT_REFERENCE)
+export function generateDotReferenceConfigs(cwd: string): void {
+  const dotRefDir = resolve(cwd, DOT_REFERENCE)
   mkdirSync(dotRefDir, { recursive: true })
 
   writeFileSync(resolve(dotRefDir, 'tsconfig.json'), TSCONFIG_JSON, 'utf-8')

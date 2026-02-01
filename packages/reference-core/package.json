@@ -1,11 +1,13 @@
 {
   "name": "@reference-ui/core",
   "version": "0.0.1",
-  "private": true,
-  "description": "Reference design system core - source-only, no build",
+  "description": "Reference design system - ships as source, builds on user install via ref-sync",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "bin": {
+    "ref-sync": "./dist/cli/index.mjs"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./tokens": "./src/tokens.ts",
@@ -15,17 +17,21 @@
   },
   "dependencies": {
     "lit": "^3.2.0",
-    "@pandacss/dev": "^0.49.0"
+    "@pandacss/dev": "^1.8.1",
+    "tsdown": "^0.20.1",
+    "@types/node": "^25.1.0"
   },
   "scripts": {
-    "build": "echo no build",
-    "dev": "concurrently \"panda codegen --watch\" \"panda --watch\"",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "dev:core": "concurrently \"panda codegen --watch\" \"panda --watch\"",
     "gen": "panda codegen && panda",
     "codegen": "panda codegen",
-    "cssgen": "panda"
+    "cssgen": "panda",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.3"
   }
 }

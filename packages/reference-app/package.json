@@ -4,22 +4,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "ref sync && vite",
-    "build": "ref sync && vite build",
+    "dev": "ref-sync && vite",
+    "build": "ref-sync && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+
     "lit": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.49.0",
-    "@reference-ui/cli": "workspace:*",
+    "@reference-ui/core": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
-    "typescript": "~5.9.2",
+    "typescript": "~5.9.3",
     "vite": "^6.0.0"
   }
 }
