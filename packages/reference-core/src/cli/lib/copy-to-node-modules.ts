@@ -16,6 +16,7 @@ function getSystemPackageJson(): string {
           import: { types: './index.d.mts', default: './index.mjs' },
           require: { types: './index.d.cts', default: './index.cjs' },
         },
+        './styles.css': './styles.css',
       },
     },
     null,
@@ -38,6 +39,7 @@ function getWebPackageJson(): string {
           import: { types: './index.d.mts', default: './index.mjs' },
           require: { types: './index.d.cts', default: './index.cjs' },
         },
+        './styles.css': './styles.css',
       },
     },
     null,
@@ -60,6 +62,7 @@ function getReactPackageJson(): string {
           import: { types: './index.d.mts', default: './index.mjs' },
           require: { types: './index.d.cts', default: './index.cjs' },
         },
+        './styles.css': './styles.css',
       },
     },
     null,
@@ -73,6 +76,7 @@ function getReactPackageJson(): string {
  */
 export function copyToNodeModules(packageRoot: string, coreDir: string): void {
   const distDir = resolve(coreDir, 'dist/entry')
+  const stylesSourcePath = resolve(coreDir, 'src/system/styles.css')
 
   if (!existsSync(distDir)) {
     throw new Error(
@@ -87,14 +91,29 @@ export function copyToNodeModules(packageRoot: string, coreDir: string): void {
   const systemTarget = resolve(packageRoot, 'node_modules/@reference-ui/system')
   cpSync(distDir, systemTarget, { recursive: true })
   writeFileSync(resolve(systemTarget, 'package.json'), getSystemPackageJson(), 'utf-8')
+  
+  // Copy styles.css if it exists
+  if (existsSync(stylesSourcePath)) {
+    cpSync(stylesSourcePath, resolve(systemTarget, 'styles.css'))
+  }
 
   // Create @reference-ui/web as alias
   const webTarget = resolve(packageRoot, 'node_modules/@reference-ui/web')
   cpSync(distDir, webTarget, { recursive: true })
   writeFileSync(resolve(webTarget, 'package.json'), getWebPackageJson(), 'utf-8')
+  
+  // Copy styles.css to web package too
+  if (existsSync(stylesSourcePath)) {
+    cpSync(stylesSourcePath, resolve(webTarget, 'styles.css'))
+  }
 
   // Create @reference-ui/react as alias
   const reactTarget = resolve(packageRoot, 'node_modules/@reference-ui/react')
   cpSync(distDir, reactTarget, { recursive: true })
   writeFileSync(resolve(reactTarget, 'package.json'), getReactPackageJson(), 'utf-8')
+  
+  // Copy styles.css to react package too
+  if (existsSync(stylesSourcePath)) {
+    cpSync(stylesSourcePath, resolve(reactTarget, 'styles.css'))
+  }
 }

@@ -9,12 +9,12 @@
 
 ## What reference-core Does
 
-**Core Purpose:** Build a design system on-the-fly for users by generating three exportable packages:
+**Core Purpose:** Build a design system on-the-fly for users by generating three exportable packages and base styles:
 - `@reference-ui/react` - React component library
 - `@reference-ui/web` - Web components library  
 - `@reference-ui/system` - Generated design system (via PandaCSS)
 
-These packages are built into the user's `node_modules` for direct import and use.
+These packages and styles are built into the user's `node_modules` for direct import and use.
 
 ## User Workflow
 
@@ -23,6 +23,12 @@ These packages are built into the user's `node_modules` for direct import and us
 npm install --save-dev @reference-ui/core
 # or
 pnpm add -D @reference-ui/core
+```
+
+### Setup
+In your app's entry file, import the base styles:
+```js
+import '@reference-ui/system/styles.css'
 ```
 
 ### Commands

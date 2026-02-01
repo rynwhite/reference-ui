@@ -6,6 +6,7 @@
   "main": "./src/entry/index.ts",
   "types": "./src/entry/index.ts",
   "bin": {
+    "ref": "./dist/cli/index.mjs",
     "ref-sync": "./dist/cli/index.mjs"
   },
   "exports": {
@@ -13,7 +14,8 @@
     "./tokens": "./src/tokens/index.ts",
     "./panda-config": "./src/tokens/index.ts",
     "./styled-system/css": "./src/system/css/index.js",
-    "./styled-system/styles.css": "./src/system/styles.css"
+    "./styled-system/styles.css": "./src/system/styles.css",
+    "./styles.css": "./src/system/styles.css"
   },
   "dependencies": {
     "lit": "^3.2.0",
