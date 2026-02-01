@@ -63,11 +63,11 @@ export function compile(config: GenerateDesignSystemConfig): BuildResult {
   }
 
   // Provide a real css() by re-exporting Panda's generated runtime.
-  // styled-system is expected to be present (copied from core).
+  // src/system is expected to be present (copied from core).
   result.files.set(
     'css.ts',
     [
-      "export { css, cx, cva, sva } from './styled-system/css/index.js'",
+      "export { css, cx, cva, sva } from './system/css/index.js'",
       '',
     ].join('\n')
   )

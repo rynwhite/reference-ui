@@ -72,11 +72,11 @@ function getReactPackageJson(): string {
  * Creates @reference-ui/system, @reference-ui/web, @reference-ui/react.
  */
 export function copyToNodeModules(packageRoot: string, coreDir: string): void {
-  const distDir = resolve(coreDir, 'dist/src')
+  const distDir = resolve(coreDir, 'dist/entry')
 
   if (!existsSync(distDir)) {
     throw new Error(
-      `@reference-ui/core: dist/src not found. Build reference-core first.`
+      `@reference-ui/core: dist/entry not found. Build reference-core first.`
     )
   }
 

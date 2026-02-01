@@ -41,10 +41,10 @@ export function readCoreSourceFiles(coreDir: string): Record<string, string> {
 
   // We materialize a consumer system from:
   // - coreDir/src/** (TypeScript source)
-  // - coreDir/styled-system/** (Panda output: JS, DTS, CSS)
+  // - coreDir/src/system/** (Panda output: JS, DTS, CSS)
   const roots: Array<{ dir: string; base: string; exts?: string[] }> = [
     { dir: resolve(coreDir, 'src'), base: '', exts: ['.ts'] },
-    { dir: resolve(coreDir, 'styled-system'), base: 'styled-system' },
+    { dir: resolve(coreDir, 'src/system'), base: 'system' },
     { dir: resolve(coreDir), base: '', exts: ['.ts'] },
   ]
 

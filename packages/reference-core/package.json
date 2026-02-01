@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "description": "Reference design system - ships as source, builds on user install via ref-sync",
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./src/entry/index.ts",
+  "types": "./src/entry/index.ts",
   "bin": {
     "ref-sync": "./dist/cli/index.mjs"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./tokens": "./src/tokens.ts",
-    "./panda-config": "./src/panda-config.ts",
-    "./styled-system/css": "./styled-system/css/index.js",
-    "./styled-system/styles.css": "./styled-system/styles.css"
+    ".": "./src/entry/index.ts",
+    "./tokens": "./src/tokens/index.ts",
+    "./panda-config": "./src/tokens/index.ts",
+    "./styled-system/css": "./src/system/css/index.js",
+    "./styled-system/styles.css": "./src/system/styles.css"
   },
   "dependencies": {
     "lit": "^3.2.0",
