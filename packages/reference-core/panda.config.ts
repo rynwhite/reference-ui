@@ -1,5 +1,6 @@
 import { defineConfig } from '@pandacss/dev'
-import { defaultTheme, defaultStaticCss } from './src/tokens/index.js'
+import { defaultTheme, defaultStaticCss } from './src/styled/index.js'
+import { rhythmUtilities } from './src/styled/rhythm.js'
 
 /**
  * Panda config for reference-core.
@@ -16,6 +17,9 @@ export default defineConfig({
   hash: false,
   jsxFramework: 'react',
   staticCss: defaultStaticCss as unknown as Parameters<typeof defineConfig>[0]['staticCss'],
+  utilities: {
+    extend: rhythmUtilities,
+  },
   theme: {
     extend: defaultTheme.extend,
   },

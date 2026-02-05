@@ -35,8 +35,8 @@ export class RefButton extends LitElement implements RefButtonProps {
 
   private getButtonStyles() {
     return css({
-      padding: '16px',
-      backgroundColor: 'primary.500',
+      padding: '3r',
+      backgroundColor: 'blue.500',
       _disabled: {
         opacity: 0.5,
         cursor: 'not-allowed',

@@ -9,4 +9,4 @@ export type {
   ButtonSize,
   RefButtonProps,
 } from '../components/Button.js';
-export { tokens, defaultTheme, defaultStaticCss } from '../tokens/index.js';
+export { tokens, defaultTheme, defaultStaticCss } from '../styled/index.js';
